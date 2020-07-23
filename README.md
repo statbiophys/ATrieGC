@@ -28,4 +28,4 @@ print(tr.clusters(max_hamming_distance))
 
 ## Caveat
 
-Don't work with generalized nucleotides.
+Doesn't work with generalized nucleotides.
