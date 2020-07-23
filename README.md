@@ -1,6 +1,6 @@
 # ATrieGC
 
-A python/c++ module to store large amount of sequences and look at hamming distance clustering.
+A python/c++ module to store large amount of sequences and look at hamming distance clustering. Should be a lot faster than the naive method (measuring every hamming distances between pairs).
 
 ## Installation
 
