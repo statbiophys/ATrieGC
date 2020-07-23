@@ -96,8 +96,10 @@ public:
     }
 
     // re-create the trie
+    std::vector<std::string> old_seqs = seqs;
+    seqs.clear();
     tr = Trie();
-    for(auto& s: seqs){
+    for(auto& s: old_seqs){
       insert(s);
     }
     return clusters;
