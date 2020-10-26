@@ -66,8 +66,8 @@ public:
   }
 
   
-  std::unordered_map<std::size_t, std::size_t> hamming_clusters(std::size_t hamming_distance){
-    std::unordered_map<std::size_t, std::size_t> clusters;
+  std::unordered_map<std::string, std::size_t> hamming_clusters(std::size_t hamming_distance){
+    std::unordered_map<std::string, std::size_t> clusters;
     std::vector<std::size_t> current_nodes, next_nodes;
     current_nodes.reserve(1024), next_nodes.reserve(1024);
     std::size_t current_cluster_nb = 0;
@@ -88,7 +88,7 @@ public:
 			      hamming_distance, next_nodes);
 	for(std::size_t jj: next_nodes){
 	  remove(seqs[jj]);
-	  clusters[jj] = current_cluster_nb;
+	  clusters[seqs[jj]] = current_cluster_nb;
 	}
       }
       current_nodes = next_nodes;
