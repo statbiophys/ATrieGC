@@ -3,6 +3,7 @@
 
 #include "utils.hpp"
 
+
 /* Class implementing a digital trie, that contain a number
 std::size_t in each occupied node.
 Nodes have to be occupied.
@@ -13,7 +14,6 @@ class Trie{
   bool full;
   std::size_t obj; // if the node is occupied (full = True) contains
 		   // the number associated with it
-
 
  public:
   Trie(){

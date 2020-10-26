@@ -16,7 +16,7 @@
 #include <random>
 #include <stdexcept>
 #include <time.h>
-
+#include <unordered_map>
 
 // maximal distance between sequences, used as a default return value
 // when the distances are above the threshold.
@@ -26,6 +26,7 @@
 
 // size of the nucleotide alphabet
 #define ALPHABET_SIZE 4
+
 
 /* Nucleotides: A, C, G, T = 0, 1, 2, 3 
    Don't consider degenerate nucleotides (probably not useful)
