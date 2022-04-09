@@ -7,8 +7,7 @@ A python/c++ module to store large amount of sequences and look at hamming dista
 After cloning the git repository:
 
 ```
-cd ATrieGC/
-pip3 install .
+pip3 install atriegc
 ```
 
 ## Usage

@@ -1,10 +1,12 @@
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 import sys
+from pathlib import Path
 import setuptools
 
 __version__ = '0.0.1'
-
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 class get_pybind_include(object):
     """Helper class to determine the pybind11 include path
@@ -91,7 +93,6 @@ class BuildExt(build_ext):
             opts.append(cpp_flag(self.compiler))
             if has_flag(self.compiler, '-fvisibility=hidden'):
                 opts.append('-fvisibility=hidden')
-
         for ext in self.extensions:
             ext.define_macros = [('VERSION_INFO', '"{}"'.format(self.distribution.get_version()))]
             ext.extra_compile_args = opts
@@ -104,10 +105,19 @@ setup(
     version=__version__,
     author='Thomas Dupic',
     author_email='dupic.thomas@gmail.com',
-    description='A module using trie to store nucleotides sequences',
+    description='A module using prefix trees to store/search nucleotides sequences',
+    url='https://github.com/statbiophys/ATrieGC',
     long_description='',
     ext_modules=ext_modules,
     setup_requires=['pybind11>=2.5.0'],
+     classifiers=[
+        'Development Status :: 1 - Planning',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: BSD License',  
+        'Operating System :: POSIX :: Linux',        
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+    ],
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
 )
