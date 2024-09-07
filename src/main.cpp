@@ -1,3 +1,4 @@
+
 #include "trie_container.hpp"
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -37,8 +38,7 @@ PYBIND11_MODULE(atriegc, m) {
       .def("clusters", &TrieContainer::hamming_clusters,
 	   "Single linkage clustering based on Hamming distance.")
       .def("shared_elements", &TrieContainer::shared_elements,
-     "List of all the pair of elements shared with a list, up to hamming distance d.")
-      ;
+     "List of all the pair of elements shared with a list, up to hamming distance d.");
 
     py::class_<TrieContainerNucl, TrieContainer>(m, "TrieNucl")
       .def(py::init<>(), "Generate a Trie for nucleotides A-C-G-T");
@@ -47,9 +47,9 @@ PYBIND11_MODULE(atriegc, m) {
       .def(py::init<>(), "Generate a Trie for amino acids");
 
 
-#ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
-#else
-    m.attr("__version__") = "dev";
-#endif
+// #ifdef VERSION_INFO
+//     m.attr("__version__") = VERSION_INFO;
+// #else
+//     m.attr("__version__") = "dev";
+// #endif
 }
