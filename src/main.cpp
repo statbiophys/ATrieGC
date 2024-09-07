@@ -1,4 +1,5 @@
 
+
 #include "trie_container.hpp"
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -48,7 +49,7 @@ PYBIND11_MODULE(atriegc, m) {
 
 
 #ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
+    m.attr("__version__") = PYBIND11_TOSTRING(VERSION_INFO);
 #else
     m.attr("__version__") = "dev";
 #endif
