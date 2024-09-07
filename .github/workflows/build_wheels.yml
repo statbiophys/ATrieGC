@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         # macos-13 is an intel runner, macos-14 is apple silicon
-        os: [ubuntu-latest]
+        os: [windows-latest]
 
     steps:
       - uses: actions/checkout@v4

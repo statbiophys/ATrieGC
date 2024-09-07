@@ -20,7 +20,7 @@ int main(){
 	for (std::string n : ng) std::cout << n << "\n";
 
 	std::cout << "Cluster test\n";
-	std::unordered_map<str, std::size_t> cluster = trie.hamming_clusters(1);
+	std::unordered_map<std::string, std::size_t> cluster = trie.hamming_clusters(1);
 	for (auto& it: cluster) {
 	    // Do stuff
 	    std::cout << it.first << ": " << it.second << "\n";

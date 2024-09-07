@@ -18,7 +18,7 @@ class TrieContainer{
 
   vecs seqs;
 
-  seq string_to_seqence(const std::string& s) {
+  seq string_to_sequence(const std::string& s) {
     seq sequence = seq(s.size());
     for (short unsigned int i=0; i<s.size(); i++)
       for (short unsigned int j=0; j<alphabet.size(); j++)
@@ -48,7 +48,7 @@ class TrieContainer{
   }
 
   void insert(const std::string& str_seq){
-    seq d = string_to_seqence(str_seq);
+    seq d = string_to_sequence(str_seq);
     seqs.push_back(str_seq);
     tr.insert(d.begin(), d.end(), seqs.size()-1);
   }
@@ -59,12 +59,12 @@ class TrieContainer{
   }
 
   void remove(const std::string&  str_seq){
-    seq d = string_to_seqence(str_seq);
+    seq d = string_to_sequence(str_seq);
     tr.remove(d.begin(), d.end());
   }
 
   bool contain(const std::string&  str_seq){
-    seq d = string_to_seqence(str_seq);
+    seq d = string_to_sequence(str_seq);
     return tr.contain(d.begin(), d.end());
   }
 
@@ -84,7 +84,7 @@ class TrieContainer{
   }
 
   vecs hamming_neighbours(const std::string& str_seq, std::size_t hamming_distance){
-    seq d = string_to_seqence(str_seq);
+    seq d = string_to_sequence(str_seq);
     std::vector<std::size_t> nb_neighbours;
     tr.hamming_neighbours(d.begin(), d.end(), hamming_distance, nb_neighbours);
 
@@ -112,7 +112,7 @@ class TrieContainer{
       }
       next_nodes.clear();
       for(std::size_t ii: current_nodes){
-        tmp_dna = string_to_seqence(seqs[ii]);
+        tmp_dna = string_to_sequence(seqs[ii]);
         tr.hamming_neighbours(tmp_dna.begin(), tmp_dna.end(), hamming_distance, next_nodes);
         for(std::size_t jj: next_nodes){
           remove(seqs[jj]);
