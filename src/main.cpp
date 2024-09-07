@@ -47,9 +47,9 @@ PYBIND11_MODULE(atriegc, m) {
       .def(py::init<>(), "Generate a Trie for amino acids");
 
 
-// #ifdef VERSION_INFO
-//     m.attr("__version__") = VERSION_INFO;
-// #else
+#ifdef VERSION_INFO
+    m.attr("__version__") = VERSION_INFO;
+#else
     m.attr("__version__") = "dev";
-    // #endif
+#endif
 }
