@@ -1,7 +1,6 @@
 #ifndef TRIE_CONT
 #define TRIE_CONT
 
-#include <ciso646>
 #include "trie.hpp"
 #include "utils.hpp"
 

@@ -1,7 +1,6 @@
 #ifndef TRIE_HPP
 #define TRIE_HPP
 
-#include <ciso646>
 #include "utils.hpp"
 
 
@@ -65,7 +64,7 @@ class Trie{
     else{
       if(cs[*b] != NULL){ // if not the word is not in the Trie
         cs[*b]->remove(std::next(b), e);
-        if((cs[*b]->is_leaf()) and (not cs[*b]->full)){
+        if((cs[*b]->is_leaf()) && (!cs[*b]->full)){
           delete cs[*b];
           cs[*b] = NULL;
         }
@@ -113,7 +112,7 @@ class Trie{
 
   // return the first dna sequence found in the tree and its content
   void next(seq& d, std::size_t& content) const{
-    if(not full){ // if we don't find one at the current node
+    if(!full){ // if we don't find one at the current node
       for(std::size_t ii=0; ii < alph_size; ++ii){
         if(cs[ii] != NULL){
           d.push_back(ii);
@@ -143,7 +142,7 @@ class Trie{
     else{
       for(std::size_t ii=0; ii < alph_size; ++ii){
         if(cs[ii] != NULL){
-          if(ii != *b and d > 0)
+          if((ii != *b) && (d > 0))
             cs[ii]->hamming_neighbours(std::next(b), e, d-1, neighbours);
           if(ii == *b)
             cs[ii]->hamming_neighbours(std::next(b), e, d, neighbours);

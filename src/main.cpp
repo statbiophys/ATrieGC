@@ -1,4 +1,3 @@
-#include <ciso646>
 #include "trie_container.hpp"
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -18,7 +17,7 @@ PYBIND11_MODULE(atriegc, m) {
     )pbdoc";
 
     py::class_<TrieContainer>(m, "Trie")
-      .def(py::init<str>(), "Generate a Trie given a generic alphabet")
+      .def(py::init<std::string>(), "Generate a Trie given a generic alphabet")
       .def("insert", &TrieContainer::insert,
 	   "Insert a nucleotide sequence in the trie." )
       .def("insert_list", &TrieContainer::insert_list,

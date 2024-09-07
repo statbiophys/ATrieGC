@@ -4,9 +4,10 @@ import sys
 from pathlib import Path
 import setuptools
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
+
 
 class get_pybind_include(object):
     """Helper class to determine the pybind11 include path
@@ -94,7 +95,8 @@ class BuildExt(build_ext):
             if has_flag(self.compiler, '-fvisibility=hidden'):
                 opts.append('-fvisibility=hidden')
         for ext in self.extensions:
-            ext.define_macros = [('VERSION_INFO', '"{}"'.format(self.distribution.get_version()))]
+            ext.define_macros = [
+                ('VERSION_INFO', '"{}"'.format(self.distribution.get_version()))]
             ext.extra_compile_args = opts
             ext.extra_link_args = link_opts
         build_ext.build_extensions(self)
@@ -110,11 +112,11 @@ setup(
     long_description='',
     ext_modules=ext_modules,
     setup_requires=['pybind11>=2.5.0'],
-     classifiers=[
+    classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',  
-        'Operating System :: POSIX :: Linux',        
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
