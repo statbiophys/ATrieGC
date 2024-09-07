@@ -1,6 +1,7 @@
 #ifndef TRIE_CONT
 #define TRIE_CONT
 
+#include <ciso646>
 #include "trie.hpp"
 #include "utils.hpp"
 
@@ -16,7 +17,7 @@ class TrieContainer{
   const str alphabet;
   // Also contain the sequences, for easy back-and-forth
 
-  vecs seqs; 
+  vecs seqs;
 
   seq string_to_seqence(const str& s) {
     seq sequence = seq(s.size());
@@ -50,7 +51,7 @@ class TrieContainer{
   void insert(const str& str_seq){
     seq d = string_to_seqence(str_seq);
     seqs.push_back(str_seq);
-    tr.insert(d.begin(), d.end(), seqs.size()-1); 
+    tr.insert(d.begin(), d.end(), seqs.size()-1);
   }
 
   void insert_list(const vecs& str_seqs){

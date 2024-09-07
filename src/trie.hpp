@@ -1,7 +1,9 @@
 #ifndef TRIE_HPP
 #define TRIE_HPP
 
+#include <ciso646>
 #include "utils.hpp"
+
 
 
 /* Class implementing a digital trie, that contain a number
@@ -13,11 +15,11 @@ class Trie{
  private:
 
     // all the childrens of a trie are trie
-    std::vector<Trie*> cs;  
+    std::vector<Trie*> cs;
     // if the node is occupied (full = True)
     bool full;
     // if the node is occupied contains the number associated with it
-    std::size_t obj; 
+    std::size_t obj;
     // number of character in the alphabet
     std::size_t alph_size;
 
@@ -26,7 +28,7 @@ class Trie{
   Trie(std::size_t alph_size) : full(false), obj(0), alph_size(alph_size) {
     cs = std::vector<Trie*>(alph_size, NULL);
   }
-  
+
   ~Trie(){
     for(auto n: cs)
       delete n;
@@ -42,7 +44,7 @@ class Trie{
     }
     return size;
   }
-    
+
   // insert one sequence into the Trie, overwrite if already here
   void insert(seq::iterator b, seq::iterator e, std::size_t o){
     if(b == e){
@@ -54,7 +56,7 @@ class Trie{
         cs[*b] = new Trie(alph_size);
       cs[*b]->insert(std::next(b),e,o);
     }
-  } 
+  }
 
   // remove an amino sequence from the Trie
   void remove(seq::iterator b, seq::iterator e){
@@ -63,7 +65,7 @@ class Trie{
     else{
       if(cs[*b] != NULL){ // if not the word is not in the Trie
         cs[*b]->remove(std::next(b), e);
-        if(cs[*b]->is_leaf() and not cs[*b]->full){
+        if((cs[*b]->is_leaf()) and (not cs[*b]->full)){
           delete cs[*b];
           cs[*b] = NULL;
         }
@@ -77,7 +79,7 @@ class Trie{
     if(cs[*b] == NULL)
       return false;
     else
-      return cs[*b]->contain(std::next(b), e); 
+      return cs[*b]->contain(std::next(b), e);
   }
 
   bool is_leaf(){
@@ -87,7 +89,7 @@ class Trie{
     }
     return true;
   }
- 
+
   bool empty(){
     for(std::size_t ii=0; ii < alph_size; ++ii){
       if(cs[ii] != NULL)
@@ -107,8 +109,8 @@ class Trie{
       if(cs[ii] != NULL)
         cs[ii]->print("  " + tab + alphabet[ii], alphabet);
     }
-  } 
- 
+  }
+
   // return the first dna sequence found in the tree and its content
   void next(seq& d, std::size_t& content) const{
     if(not full){ // if we don't find one at the current node
@@ -121,7 +123,7 @@ class Trie{
       }
     }
     else{ // if we found an occupied node, we stop
-      content = obj;  
+      content = obj;
     }
   }
 
