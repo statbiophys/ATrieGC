@@ -98,7 +98,7 @@ class Trie{
   }
 
   // display the Trie (folder like)
-  void print(str alphabet, str tab="") {
+  void print(str alphabet, std::string tab="") {
     if(full)
       std::cout << tab << ":" << obj;
     else

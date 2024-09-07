@@ -33,8 +33,7 @@
 
 
 using seq = std::vector<short unsigned int>;
-using str = std::string;
-using vecs = std::vector<str>;
+using vecs = std::vector<std::string>;
 
 
 /* Return the hamming distance between two strings. If the string are

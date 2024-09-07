@@ -1,6 +1,6 @@
 #ifndef TRIE_CONT
 #define TRIE_CONT
-
+#include <ciso646>
 #include "trie.hpp"
 #include "utils.hpp"
 
@@ -13,12 +13,12 @@ class TrieContainer{
 
   Trie tr;
 
-  const str alphabet;
+  const std::string alphabet;
   // Also contain the sequences, for easy back-and-forth
 
   vecs seqs;
 
-  seq string_to_seqence(const str& s) {
+  seq string_to_seqence(const std::string& s) {
     seq sequence = seq(s.size());
     for (short unsigned int i=0; i<s.size(); i++)
       for (short unsigned int j=0; j<alphabet.size(); j++)
@@ -29,8 +29,8 @@ class TrieContainer{
     return sequence;
   }
 
-  str sequence_to_string(const seq& x) {
-    str st = "";
+  std::string sequence_to_string(const seq& x) {
+    std::string st = "";
     for(auto l: x){
       st += alphabet[l];
     }
@@ -39,7 +39,7 @@ class TrieContainer{
 
 
  public:
-  TrieContainer(str alphabet): tr(Trie(alphabet.size())), alphabet(alphabet) {
+  TrieContainer(std::string alphabet): tr(Trie(alphabet.size())), alphabet(alphabet) {
     // TODO: check for repeated characters in the alphabet string
   }
 
@@ -47,23 +47,23 @@ class TrieContainer{
     return tr.size();
   }
 
-  void insert(const str& str_seq){
+  void insert(const std::string& str_seq){
     seq d = string_to_seqence(str_seq);
     seqs.push_back(str_seq);
     tr.insert(d.begin(), d.end(), seqs.size()-1);
   }
 
   void insert_list(const vecs& str_seqs){
-    for (const str& str_seq : str_seqs)
+    for (const std::string& str_seq : str_seqs)
       insert(str_seq);
   }
 
-  void remove(const str&  str_seq){
+  void remove(const std::string&  str_seq){
     seq d = string_to_seqence(str_seq);
     tr.remove(d.begin(), d.end());
   }
 
-  bool contain(const str&  str_seq){
+  bool contain(const std::string&  str_seq){
     seq d = string_to_seqence(str_seq);
     return tr.contain(d.begin(), d.end());
   }
@@ -76,14 +76,14 @@ class TrieContainer{
     tr.print(alphabet);
   }
 
-  str next(){
+  std::string next(){
     seq d = seq();
     std::size_t ct;
     tr.next(d, ct);
     return sequence_to_string(d);
   }
 
-  vecs hamming_neighbours(const str& str_seq, std::size_t hamming_distance){
+  vecs hamming_neighbours(const std::string& str_seq, std::size_t hamming_distance){
     seq d = string_to_seqence(str_seq);
     std::vector<std::size_t> nb_neighbours;
     tr.hamming_neighbours(d.begin(), d.end(), hamming_distance, nb_neighbours);
@@ -95,8 +95,8 @@ class TrieContainer{
     return neighbours;
   }
 
-  std::unordered_map<str, std::size_t> hamming_clusters(std::size_t hamming_distance){
-    std::unordered_map<str, std::size_t> clusters;
+  std::unordered_map<std::string, std::size_t> hamming_clusters(std::size_t hamming_distance){
+    std::unordered_map<std::string, std::size_t> clusters;
     std::vector<std::size_t> current_nodes, next_nodes;
     current_nodes.reserve(1024), next_nodes.reserve(1024);
     std::size_t current_cluster_nb = 0;
@@ -132,12 +132,12 @@ class TrieContainer{
     return clusters;
   }
 
-  std::vector<std::pair<str, str>> shared_elements(vecs list, int hamming_dist) {
-    std::vector<std::pair<str, str>> sh_list = std::vector<std::pair<str, str>>(0);
-    for (const str& elem2 : list){
+  std::vector<std::pair<std::string, std::string>> shared_elements(vecs list, int hamming_dist) {
+    std::vector<std::pair<std::string, std::string>> sh_list = std::vector<std::pair<std::string, std::string>>(0);
+    for (const std::string& elem2 : list){
       vecs sh_elem = hamming_neighbours(elem2, hamming_dist);
-      for (const str& elem1 : sh_elem)
-        sh_list.push_back(std::pair<str, str>(elem1, elem2));
+      for (const std::string& elem1 : sh_elem)
+        sh_list.push_back(std::pair<std::string, std::string>(elem1, elem2));
     }
     return sh_list;
   }
